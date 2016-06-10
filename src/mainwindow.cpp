@@ -18,7 +18,8 @@ MainWindow::~MainWindow()
 void MainWindow::showEvent(QShowEvent *)
 {
     // Setting the QGraphicsScene
-    scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
+    //scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
+    scene = new Scene();
     ui->graphicsView->setScene(scene);
     // Create world
     world = new b2World(b2Vec2(0.0f, -9.8f));

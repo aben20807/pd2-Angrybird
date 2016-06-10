@@ -3,16 +3,8 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include <QList>
-#include <QDesktopWidget>
-#include <QTimer>
-#include <Box2D/Box2D.h>
-#include <QMouseEvent>
-#include <iostream>
 
-#include <gameitem.h>
-#include <land.h>
-#include <bird.h>
+#include "scene.h"
 
 namespace Ui {
 class MainWindow;
@@ -38,7 +30,7 @@ private slots:
     void QUITSLOT();
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
+    Scene *scene;
     b2World *world;
     QList<GameItem *> itemList;
     QTimer timer;
