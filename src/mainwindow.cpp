@@ -18,9 +18,9 @@ MainWindow::~MainWindow()
 void MainWindow::showEvent(QShowEvent *)
 {
     // Setting the QGraphicsScene
-    //scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
-    scene = new Scene();
+    scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
     ui->graphicsView->setScene(scene);
+
     // Create world
     world = new b2World(b2Vec2(0.0f, -9.8f));
     // Setting Size
@@ -45,17 +45,17 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     if(event->type() == QEvent::MouseButtonPress)
     {
         /* TODO : add your code here */
-        //std::cout << "Press !" << std::endl ;
+        //cout << "Press !" << endl ;
     }
     if(event->type() == QEvent::MouseMove)
     {
         /* TODO : add your code here */
-        //std::cout << "Move !" << std::endl ;
+        cout << "Move !" << endl ;
     }
     if(event->type() == QEvent::MouseButtonRelease)
     {
         /* TODO : add your code here */
-        //std::cout << "Release !" << std::endl ;
+        //cout << "Release !" << endl ;
     }
     return false;
 }
