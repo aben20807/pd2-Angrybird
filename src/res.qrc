@@ -1,6 +1,10 @@
 <RCC>
     <qresource prefix="/">
-        <file alias="ground.png">image/GROUND.png</file>
+        <file alias="Xground.png">image/GROUND.png</file>
         <file alias="bird.png">image/Normal_Bird_1.png</file>
+        <file alias="ground.png">image/mineground.png</file>
+        <file alias="-.png">image/boundary_-.png</file>
+        <file alias="--.png">image/boundary_--.png</file>
+        <file alias="slingshot.png">image/slingshot.png</file>
     </qresource>
 </RCC>

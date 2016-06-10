@@ -17,7 +17,7 @@ public:
 
 public slots:
     void paint();
-    // TODO virtual void collide();
+    //TODO virtual void collide();
 
 protected:
     b2Body *g_body;

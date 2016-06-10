@@ -12,8 +12,8 @@
 
 #include "gameitem.h"
 #include "land.h"
+#include "barrier.h"
 #include "bird.h"
-#include "scene.h"
 
 namespace Ui {
 class MainWindow;
