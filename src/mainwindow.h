@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
 #include <QList>
 #include <QDesktopWidget>
 #include <QTimer>
@@ -14,6 +15,8 @@
 #include "land.h"
 #include "barrier.h"
 #include "bird.h"
+#include "enemy.h"
+
 
 namespace Ui {
 class MainWindow;

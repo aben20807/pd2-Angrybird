@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     // Enable the event Filter
+
     qApp->installEventFilter(this);
 }
 
@@ -20,23 +21,43 @@ void MainWindow::showEvent(QShowEvent *)
     // Setting the QGraphicsScene
     scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
     ui->graphicsView->setScene(scene);
-    scene->setSceneRect(10,0,800,530);
+    scene->setSceneRect(10,3,800,530);
     // Create world
     world = new b2World(b2Vec2(0.0f, -9.8f));
     // Setting Size
     GameItem::setGlobalSize(QSizeF(32,18),size());
 
+    QImage bg;
+    bg.load(":/bg_sky");
+    scene->setBackgroundBrush(bg);
+
     // Create ground
-    itemList.push_back(new Land(13.6,0.9,32,3,QPixmap(":/ground.png").scaled(width(),height()/8.0),world,scene));
+    itemList.push_back(new Land(8.9,1.3,QPixmap(":/ground.png").scaled(1370,72),world,scene));
+
+//    itemList.push_back(new Land(W_CENTER,H_CENTER,QPixmap(":/dot").scaled(5,5),world,scene));
+//    Enemy *t = new Enemy();
+//    QPixmap face;
+//    face.load(":/dot");
+//    face = face.scaled(3,3);
+//    t->setPixmap(face);
+//    t->setPos(-69,530.5);
+//    scene->addItem(t);
+
     //邊界
-    itemList.push_back(new Barrier(30.7,9.2,2,18,QPixmap(":/-.png").scaled(width()/10,height()),world,scene));//右
-    itemList.push_back(new Barrier(-5.0,9.2,2,18,QPixmap(":/-.png").scaled(width()/10,height()),world,scene));//左
-    itemList.push_back(new Barrier(13.6,19.5,32,1,QPixmap(":/--.png").scaled(width(),height()/10),world,scene));//上
+    itemList.push_back(new Land(32,14,QPixmap(":/-.png").scaled(12,1837),world,scene));//右
+    itemList.push_back(new Land(-3.3,14,QPixmap(":/-.png").scaled(12,1837),world,scene));//左
+    itemList.push_back(new Land(15.7,18.5,QPixmap(":/--.png").scaled(1870,12),world,scene));//上
+
+    //障礙物
+    itemList.push_back(new Barrier(13.6,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
+    itemList.push_back(new Barrier(13.6,10,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
+    itemList.push_back(new Barrier(13.6,5,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
+    itemList.push_back(new Barrier(13.6,3,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
 
     // Create bird (You can edit here)
-    Bird *birdie = new Bird(0.0f,10.0f,0.27f,&timer,QPixmap(":/bird.png").scaled(height()/10.0,height()/10.0),world,scene);
+    Bird *birdie = new Bird(0.0f,10.0f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
     // Setting the Velocity
-    birdie->setLinearVelocity(b2Vec2(5,5));
+    birdie->setLinearVelocity(b2Vec2(145,110));
     itemList.push_back(birdie);
 
     // Timer

@@ -4,9 +4,9 @@ INPUT(
 ./debug\gameitem.o
 ./debug\bird.o
 ./debug\land.o
-./debug\scene.o
+./debug\barrier.o
+./debug\enemy.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_gameitem.o
-./debug\moc_scene.o
 );

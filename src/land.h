@@ -1,13 +1,14 @@
 #ifndef LAND_H
 #define LAND_H
 
-#include <gameitem.h>
+#include "gameitem.h"
 #include <QGraphicsScene>
-
+//#include <iostream>
+//using namespace std;
 class Land : public GameItem
 {
 public:
-    Land(float x, float y, float w, float h, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
+    Land(float x, float y, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
 };
 
 #endif // LAND_H
