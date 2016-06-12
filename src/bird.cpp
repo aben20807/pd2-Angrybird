@@ -2,13 +2,14 @@
 
 Bird::Bird(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
 {
-    float radius = (pixmap.width())*(W_WORLD/W_WINDOW)/2;
+    float radius = (pixmap.height())*(H_WORLD/H_WINDOW)/2;
+
     // Set pixmap
     g_pixmap.setPixmap(pixmap);
-    //g_pixmap.setTransformOriginPoint(g_pixmap.boundingRect().width()/2,g_pixmap.boundingRect().height()/2);
+    g_pixmap.setTransformOriginPoint(g_pixmap.boundingRect().width()/2,g_pixmap.boundingRect().height()/2);
     g_size = QSize(radius*2,radius*2);
-    std::cout<<pixmap.width()<<endl;
-    std::cout<<radius<<endl;
+    //cout<<radius<<endl;
+
     // Create Body
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;

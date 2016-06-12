@@ -32,7 +32,7 @@ void MainWindow::showEvent(QShowEvent *)
     scene->setBackgroundBrush(bg);
 
     // Create ground
-    itemList.push_back(new Land(8.9,1.3,QPixmap(":/ground.png").scaled(1370,72),world,scene));
+    itemList.push_back(new Land(8.9,1.3,QPixmap(":/ground.png").scaled(1270,72),world,scene));
 
 //    itemList.push_back(new Land(W_CENTER,H_CENTER,QPixmap(":/dot").scaled(5,5),world,scene));
 //    Enemy *t = new Enemy();
@@ -44,20 +44,21 @@ void MainWindow::showEvent(QShowEvent *)
 //    scene->addItem(t);
 
     //邊界
-    itemList.push_back(new Land(32,14,QPixmap(":/-.png").scaled(12,1837),world,scene));//右
-    itemList.push_back(new Land(-3.3,14,QPixmap(":/-.png").scaled(12,1837),world,scene));//左
+    itemList.push_back(new Land(32.0,14.0,QPixmap(":/-.png").scaled(12,1837),world,scene));//右
+    itemList.push_back(new Land(-3.3,14.0,QPixmap(":/-.png").scaled(12,1837),world,scene));//左
     itemList.push_back(new Land(15.7,18.5,QPixmap(":/--.png").scaled(1870,12),world,scene));//上
 
     //障礙物
-    itemList.push_back(new Barrier(13.6,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
-    itemList.push_back(new Barrier(13.6,10,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
-    itemList.push_back(new Barrier(13.6,5,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
-    itemList.push_back(new Barrier(13.6,3,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
+    itemList.push_back(new Barrier(12.7,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
+    itemList.push_back(new Barrier(17.4,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
+    itemList.push_back(new Barrier(15.0,3,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
+    itemList.push_back(new Barrier(15.0,8,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
 
     // Create bird (You can edit here)
     Bird *birdie = new Bird(0.0f,10.0f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
+
     // Setting the Velocity
-    birdie->setLinearVelocity(b2Vec2(145,110));
+    birdie->setLinearVelocity(b2Vec2(5,5));
     itemList.push_back(birdie);
 
     // Timer
