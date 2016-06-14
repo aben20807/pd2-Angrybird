@@ -7,6 +7,7 @@
 #include <QTransform>
 #include <QtMath>
 #include <iostream>
+#include <QGraphicsSceneMouseEvent>
 
 using namespace std;
 #define W_CENTER (31.85/2-2.3)

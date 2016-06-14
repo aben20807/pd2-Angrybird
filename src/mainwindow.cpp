@@ -21,7 +21,7 @@ void MainWindow::showEvent(QShowEvent *)
     // Setting the QGraphicsScene
     scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
     ui->graphicsView->setScene(scene);
-    scene->setSceneRect(10,3,800,530);
+    scene->setSceneRect(10,4,800,530);
     // Create world
     world = new b2World(b2Vec2(0.0f, -9.8f));
     // Setting Size
@@ -72,8 +72,11 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     // Hint: Notice the Number of every event!
     if(event->type() == QEvent::MouseButtonPress)
     {
-        /* TODO : add your code here */
         //cout << "Press !" << endl ;
+        QMouseEvent *click = static_cast<QMouseEvent *>(event);
+        ropeStart.setX(click->x());
+        ropeStart.setY(click->y());
+        cout<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
     }
     if(event->type() == QEvent::MouseMove)
     {
@@ -84,6 +87,10 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     {
         /* TODO : add your code here */
         //cout << "Release !" << endl ;
+        QMouseEvent *click = static_cast<QMouseEvent *>(event);
+        ropeStart.setX(click->x());
+        ropeStart.setY(click->y());
+        cout<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
     }
     return false;
 }

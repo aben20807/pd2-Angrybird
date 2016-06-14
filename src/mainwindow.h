@@ -31,7 +31,9 @@ public:
     ~MainWindow();
     void showEvent(QShowEvent *);
     bool eventFilter(QObject *,QEvent *event);
+    //void mousePressEvent(QGraphicsSceneMouseEvent *cclick);
     void closeEvent(QCloseEvent *);
+
 signals:
     // Signal for closing the game
     void quitGame();
@@ -46,6 +48,10 @@ private:
     b2World *world;
     QList<GameItem *> itemList;
     QTimer timer;
+    QPointF ropeStart;
+    QPointF ropeEnd;
+    QPointF ropeLength;
+    QGraphicsSceneMouseEvent *click;
 };
 
 #endif // MAINWINDOW_H
