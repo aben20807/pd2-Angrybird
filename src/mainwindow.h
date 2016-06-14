@@ -52,6 +52,7 @@ private:
     QPointF ropeEnd;
     QPointF ropeLength;
     QGraphicsSceneMouseEvent *click;
+    Bird *birdie2;
 };
 
 #endif // MAINWINDOW_H

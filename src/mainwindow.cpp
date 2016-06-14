@@ -55,11 +55,11 @@ void MainWindow::showEvent(QShowEvent *)
     itemList.push_back(new Barrier(15.0,8,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
 
     // Create bird (You can edit here)
-    Bird *birdie = new Bird(0.0f,10.0f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
+    //Bird *birdie = new Bird(0.0f,10.0f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
 
     // Setting the Velocity
-    birdie->setLinearVelocity(b2Vec2(5,5));
-    itemList.push_back(birdie);
+    //birdie->setLinearVelocity(b2Vec2(5,5));
+    //itemList.push_back(birdie);
 
     // Timer
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
@@ -76,21 +76,29 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         QMouseEvent *click = static_cast<QMouseEvent *>(event);
         ropeStart.setX(click->x());
         ropeStart.setY(click->y());
-        cout<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
+        cout<<"start:"<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
+        birdie2 = new Bird(0.0f,10.0f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
+        return true;
     }
     if(event->type() == QEvent::MouseMove)
     {
         /* TODO : add your code here */
         //cout << "Move !" << endl ;
+        return true;
     }
     if(event->type() == QEvent::MouseButtonRelease)
     {
         /* TODO : add your code here */
         //cout << "Release !" << endl ;
         QMouseEvent *click = static_cast<QMouseEvent *>(event);
-        ropeStart.setX(click->x());
-        ropeStart.setY(click->y());
-        cout<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
+        ropeEnd.setX(click->x());
+        ropeEnd.setY(click->y());
+        cout<<"end:"<<ropeEnd.x()<<" "<<ropeEnd.y()<<endl;
+        ropeLength = ropeEnd - ropeStart;
+        cout<<"length:"<<-1*ropeLength.x()<<" "<<ropeLength.y()<<endl;
+        birdie2->setLinearVelocity(b2Vec2(-1*ropeLength.x()/10,ropeLength.y()/10));
+        itemList.push_back(birdie2);
+        return true;
     }
     return false;
 }
