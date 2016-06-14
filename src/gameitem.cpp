@@ -22,7 +22,7 @@ void GameItem::setGlobalSize(QSizeF worldsize, QSizeF windowsize)
 }
 
 void GameItem::paint()
-{
+{//box2D 轉 Qt
     b2Vec2 pos = g_body->GetPosition();
     //cout << g_body->GetAngle() << std::endl;
     QPointF mappedPoint;

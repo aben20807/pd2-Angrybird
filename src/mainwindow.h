@@ -33,7 +33,7 @@ public:
     bool eventFilter(QObject *,QEvent *event);
     //void mousePressEvent(QGraphicsSceneMouseEvent *cclick);
     void closeEvent(QCloseEvent *);
-
+    QPointF qtToBox2d(float, float, float w, float h);
 signals:
     // Signal for closing the game
     void quitGame();

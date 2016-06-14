@@ -74,10 +74,9 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     {
         //cout << "Press !" << endl ;
         QMouseEvent *click = static_cast<QMouseEvent *>(event);
-        ropeStart.setX(click->x());
-        ropeStart.setY(click->y());
+        ropeStart = qtToBox2d(click->x(),click->y(),23,23);
         cout<<"start:"<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
-        birdie2 = new Bird(0.0f,10.0f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
+        birdie2 = new Bird((ropeStart.x()),ropeStart.y(),&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
         return true;
     }
     if(event->type() == QEvent::MouseMove)
@@ -88,19 +87,24 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     }
     if(event->type() == QEvent::MouseButtonRelease)
     {
-        /* TODO : add your code here */
         //cout << "Release !" << endl ;
         QMouseEvent *click = static_cast<QMouseEvent *>(event);
-        ropeEnd.setX(click->x());
-        ropeEnd.setY(click->y());
+        ropeEnd = qtToBox2d(click->x(),click->y(),23,23);
         cout<<"end:"<<ropeEnd.x()<<" "<<ropeEnd.y()<<endl;
         ropeLength = ropeEnd - ropeStart;
         cout<<"length:"<<-1*ropeLength.x()<<" "<<ropeLength.y()<<endl;
-        birdie2->setLinearVelocity(b2Vec2(-1*ropeLength.x()/10,ropeLength.y()/10));
+        birdie2->setLinearVelocity(b2Vec2(-4*ropeLength.x(),-4*ropeLength.y()));
         itemList.push_back(birdie2);
         return true;
     }
     return false;
+}
+QPointF MainWindow::qtToBox2d(float x,float y,float w,float h)
+{//把 qt 的座標轉換成 box2D 的
+    QPointF tmp;
+    tmp.setX((x-95+w)*W_WORLD/W_WINDOW);
+    tmp.setY(((-1*(y+10)/H_WINDOW)+1)*H_WORLD+h*H_WORLD/H_WINDOW);
+    return tmp;
 }
 
 void MainWindow::closeEvent(QCloseEvent *)
