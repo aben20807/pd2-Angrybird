@@ -15,6 +15,7 @@
 #include "land.h"
 #include "barrier.h"
 #include "bird.h"
+#include "other.h"
 #include "enemy.h"
 
 
@@ -53,6 +54,7 @@ private:
     QPointF ropeLength;
     QGraphicsSceneMouseEvent *click;
     Bird *birdie2;
+    Other *slingshot;
 };
 
 #endif // MAINWINDOW_H

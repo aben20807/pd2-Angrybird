@@ -6,6 +6,7 @@ INPUT(
 ./debug\land.o
 ./debug\barrier.o
 ./debug\enemy.o
+./debug\other.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_gameitem.o

@@ -54,6 +54,13 @@ void MainWindow::showEvent(QShowEvent *)
     itemList.push_back(new Barrier(15.0,3,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
     itemList.push_back(new Barrier(15.0,8,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
 
+    //彈弓
+    slingshot = new Other;
+    QPixmap slingshot_p;
+    slingshot_p.load(":/slingshot.png");
+    slingshot->setPixmap(slingshot_p);
+    slingshot->setPos(60,330);
+    scene->addItem(slingshot);
     // Create bird (You can edit here)
     //Bird *birdie = new Bird(0.0f,10.0f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
 

@@ -6,6 +6,7 @@ INPUT(
 ./release\land.o
 ./release\barrier.o
 ./release\enemy.o
+./release\other.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_gameitem.o
