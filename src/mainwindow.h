@@ -9,7 +9,10 @@
 #include <QTimer>
 #include <Box2D/Box2D.h>
 #include <QMouseEvent>
+#include <QLineF>
+#include <QPen>
 #include <iostream>
+#include <QGraphicsLineItem>
 
 #include "gameitem.h"
 #include "land.h"
@@ -55,6 +58,7 @@ private:
     QGraphicsSceneMouseEvent *click;
     Bird *birdie2;
     Other *slingshot;
+    QGraphicsLineItem *line;
 };
 
 #endif // MAINWINDOW_H

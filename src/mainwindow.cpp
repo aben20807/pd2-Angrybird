@@ -61,6 +61,7 @@ void MainWindow::showEvent(QShowEvent *)
     slingshot->setPixmap(slingshot_p);
     slingshot->setPos(60,330);
     scene->addItem(slingshot);
+//    line = new QGraphicsLineItem;//(60,320,50,340);
     // Create bird (You can edit here)
     //Bird *birdie = new Bird(0.0f,10.0f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
 
@@ -84,12 +85,23 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         ropeStart = qtToBox2d(click->x(),click->y(),23,23);
         cout<<"start:"<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
         birdie2 = new Bird((ropeStart.x()),ropeStart.y(),&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
+        //line->setLine(60,320,click->x(),click->y());
+
         return true;
     }
     if(event->type() == QEvent::MouseMove)
     {
-        /* TODO : add your code here */
-        //cout << "Move !" << endl ;
+
+//        QMouseEvent *click = static_cast<QMouseEvent *>(event);
+//        QLineF line1(6,3,8,4);
+//        //cout << "Move !" << endl ;
+//        //line->setLine(60,320,click->x(),click->y());
+//        QPen pen;
+//        pen.setWidth(10);
+//        pen.setColor(Qt::black);
+//        line->setPen(pen);
+//        line->setLine(line1);
+//        line->setVisible(true);
         return true;
     }
     if(event->type() == QEvent::MouseButtonRelease)
