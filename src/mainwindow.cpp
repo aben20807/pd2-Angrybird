@@ -78,6 +78,9 @@ void MainWindow::showEvent(QShowEvent *)
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
     connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
     timer.start(100/6);
+    stopCheck.start(1);
+    useAbility = true;
+    genType = 0;
     //stopCheck = new QTimer(this);
 //    connect(&stopCheck , SIGNAL(timeout()) , this , SLOT(takeBirdAway()));
 //    stopCheck.start(1);
@@ -86,23 +89,26 @@ void MainWindow::showEvent(QShowEvent *)
 bool MainWindow::eventFilter(QObject *, QEvent *event)
 {
     // Hint: Notice the Number of every event!
-    if(event->type() == QEvent::MouseButtonPress)
+    if(event->type() == QEvent::MouseButtonPress && useAbility == true)
     {
         stopCheck.stop();
-//        if(bird_1->isWidgetType())
-//        {
-//            bird_1->removeBird(scene);
-//        }
         //cout << "Press !" << endl ;
         QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
         ropeStart = qtToBox2d(mclick->x(),mclick->y(),23,23);
         //cout<<"start:"<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
-        //bird_1 = new Bird_blue((ropeStart.x()),ropeStart.y(),&timer,QPixmap(":/bird_b.png").scaled(42,41),world,scene);
-        bird_1 = genBird((ropeStart.x()),ropeStart.y(),&timer,1,world,scene);
+        genType = (genType) % BIRD_NUM;
+        world->SetGravity(b2Vec2(0.0f, 0.0f));//點擊時把重力設成0
+        bird_1 = genBird(2.94,6.43,&timer,genType,world,scene);
         //line->setLine(60,320,click->x(),click->y());
         list.push_back(bird_1);
-
+        useAbility = false;
         return true;
+    }
+    if(event->type() == QEvent::MouseButtonPress && useAbility == false)
+    {
+        bird_1->ability();
+
+        //useAbility = true;
     }
     if(event->type() == QEvent::MouseMove)
     {
@@ -122,8 +128,8 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     }
     if(event->type() == QEvent::MouseButtonRelease)
     {
-
         //cout << "Release !" << endl ;
+        world->SetGravity(b2Vec2(0.0f, -9.8f));//釋放時把重力設成-9.8
         QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
         ropeEnd = qtToBox2d(mclick->x(),mclick->y(),23,23);
         //cout<<"end:"<<ropeEnd.x()<<" "<<ropeEnd.y()<<endl;
@@ -134,8 +140,8 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         itemList.push_back(bird_1);
 
         connect(&stopCheck , SIGNAL(timeout()) , this , SLOT(takeBirdAway()));
-        stopCheck.start(1);
-        cout<<bird_1->getLinearVelocity().x<<" "<<bird_1->getLinearVelocity().y<<endl;
+        stopCheck.start();
+        //cout<<bird_1->getLinearVelocity().x<<" "<<bird_1->getLinearVelocity().y<<endl;
         return true;
     }
     return false;
@@ -151,6 +157,7 @@ QPointF MainWindow::qtToBox2d(float x,float y,float w,float h)
 void MainWindow::closeEvent(QCloseEvent *)
 {
     // Close event
+    timer.stop();
     emit quitGame();
 }
 
@@ -173,6 +180,8 @@ void MainWindow::takeBirdAway()
             i->removeBird(scene);
             list.removeOne(i);
             delete i;
+            useAbility = true;
+            genType++;
         }
     }
 }

@@ -20,12 +20,14 @@ public:
     void setLinearVelocity(b2Vec2 velocity);
     b2Vec2 getLinearVelocity();
     void removeBird(QGraphicsScene *scene);
+    virtual void ability();
+
 protected:
 //    QPixmap pixmap;
 //    float radius;
-//    b2BodyDef bodyDef;
-//    b2CircleShape bodyShape;
-//    b2FixtureDef fixturedef;
+    b2BodyDef bodyDef;
+    b2CircleShape bodyShape;
+    b2FixtureDef fixturedef;
 
 };
 

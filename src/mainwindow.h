@@ -24,6 +24,7 @@
 #include "enemy.h"
 #include "genbird.h"
 
+#define BIRD_NUM 2
 
 namespace Ui {
 class MainWindow;
@@ -66,6 +67,8 @@ private:
     Bird *bird_2;
     Bird *bird_3;
     Bird *bird_4;
+    bool useAbility;
+    int genType;
     QList<Bird *> list;
     Other *slingshot;
     //QGraphicsLineItem *line;

@@ -1,6 +1,5 @@
 #include "bird.h"
 
-//Bird::Bird(b2World *world):GameItem(world){}
 Bird::Bird(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
 {
     // Set pixmap
@@ -12,15 +11,15 @@ Bird::Bird(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGra
     //cout<<radius<<endl;
 
     // Create Body
-    b2BodyDef bodyDef;
+    //b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.bullet = true;
     bodyDef.position.Set(x,y);
     bodyDef.userData = this;
     g_body = world->CreateBody(&bodyDef);
-    b2CircleShape bodyShape;
+    //b2CircleShape bodyShape;
     bodyShape.m_radius = radius;
-    b2FixtureDef fixturedef;
+    //b2FixtureDef fixturedef;
     fixturedef.shape = &bodyShape;
     fixturedef.density = BIRD_DENSITY;
     fixturedef.friction = BIRD_FRICTION;
@@ -42,8 +41,11 @@ b2Vec2 Bird::getLinearVelocity()
 {
     return g_body->GetLinearVelocity();
 }
-
 void Bird::removeBird(QGraphicsScene *scene)
 {
     scene->removeItem(&g_pixmap);
+}
+void Bird::ability()
+{
+
 }

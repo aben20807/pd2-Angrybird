@@ -14,6 +14,7 @@ Land::Land(float x, float y, QPixmap pixmap, b2World *world, QGraphicsScene *sce
 
     // Create body
     b2BodyDef bodyDef;
+    bodyDef.type = b2_staticBody;
     bodyDef.userData = this;
     bodyDef.position.Set(x,y);
     g_body = world->CreateBody(&bodyDef);

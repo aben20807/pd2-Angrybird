@@ -1,7 +1,10 @@
 #include "genbird.h"
 
+#define BIRD_NUM 2
+
 #define BIRD 0
 #define BIRD_BLUE 1
+
 Bird *genBird(float x, float y, QTimer *timer, int bird_type, b2World *world, QGraphicsScene *scene)
 {
     Bird *ptr;
