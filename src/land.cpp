@@ -18,7 +18,7 @@ Land::Land(float x, float y, QPixmap pixmap, b2World *world, QGraphicsScene *sce
     bodyDef.position.Set(x,y);
     g_body = world->CreateBody(&bodyDef);
     b2PolygonShape bodyBox;
-    bodyBox.SetAsBox(w/2.1f,h/2.0f);
+    bodyBox.SetAsBox(w/1.8f,h/2.0f);
     g_body->CreateFixture(&bodyBox,9.0f);
 
     scene->addItem(&g_pixmap);

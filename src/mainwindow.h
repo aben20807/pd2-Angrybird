@@ -7,6 +7,7 @@
 #include <QList>
 #include <QDesktopWidget>
 #include <QTimer>
+#include <QTime>
 #include <Box2D/Box2D.h>
 #include <QMouseEvent>
 #include <QLineF>
@@ -21,6 +22,7 @@
 #include "bird_blue.h"
 #include "other.h"
 #include "enemy.h"
+#include "genbird.h"
 
 
 namespace Ui {
@@ -48,19 +50,25 @@ private slots:
     void tick();
     // For debug slot
     void QUITSLOT();
+    void takeBirdAway();
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     b2World *world;
     QList<GameItem *> itemList;
     QTimer timer;
+    QTimer stopCheck;
     QPointF ropeStart;
     QPointF ropeEnd;
     QPointF ropeLength;
-    QGraphicsSceneMouseEvent *click;
-    Bird *birdie2;
+    //QGraphicsSceneMouseEvent *click;
+    Bird *bird_1;
+    Bird *bird_2;
+    Bird *bird_3;
+    Bird *bird_4;
+    QList<Bird *> list;
     Other *slingshot;
-    QGraphicsLineItem *line;
+    //QGraphicsLineItem *line;
 };
 
 #endif // MAINWINDOW_H

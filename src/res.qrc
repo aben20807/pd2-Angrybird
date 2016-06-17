@@ -11,5 +11,6 @@
         <file alias="bg_sky">image/bg_sky.png</file>
         <file alias="barr_--.png">image/barr_--.png</file>
         <file alias="barr_l.png">image/barr_l.png</file>
+        <file alias="bird_b.png">image/blue.png</file>
     </qresource>
 </RCC>

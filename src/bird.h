@@ -15,10 +15,13 @@
 class Bird : public GameItem
 {
 public:
-    Bird(b2World *world);
+    //Bird(b2World *world);
     Bird(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
     void setLinearVelocity(b2Vec2 velocity);
-//protected:
+    b2Vec2 getLinearVelocity();
+    void removeBird(QGraphicsScene *scene);
+protected:
+//    QPixmap pixmap;
 //    float radius;
 //    b2BodyDef bodyDef;
 //    b2CircleShape bodyShape;

@@ -1,13 +1,13 @@
 #include "bird.h"
 
-Bird::Bird(b2World *world):GameItem(world){}
+//Bird::Bird(b2World *world):GameItem(world){}
 Bird::Bird(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
 {
-    float radius = (pixmap.height())*(H_WORLD/H_WINDOW)/2;
-
     // Set pixmap
     g_pixmap.setPixmap(pixmap);
     g_pixmap.setTransformOriginPoint(g_pixmap.boundingRect().width()/2,g_pixmap.boundingRect().height()/2);
+
+    float radius = (pixmap.height())*(H_WORLD/H_WINDOW)/2;
     g_size = QSize(radius*2,radius*2);
     //cout<<radius<<endl;
 
@@ -37,4 +37,13 @@ Bird::Bird(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGra
 void Bird::setLinearVelocity(b2Vec2 velocity)
 {
     g_body->SetLinearVelocity(velocity);
+}
+b2Vec2 Bird::getLinearVelocity()
+{
+    return g_body->GetLinearVelocity();
+}
+
+void Bird::removeBird(QGraphicsScene *scene)
+{
+    scene->removeItem(&g_pixmap);
 }
