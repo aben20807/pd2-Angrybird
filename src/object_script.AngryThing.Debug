@@ -9,6 +9,8 @@ INPUT(
 ./debug\other.o
 ./debug\bird_blue.o
 ./debug\genbird.o
+./debug\bird_white.o
+./debug\bird_yellow.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_gameitem.o

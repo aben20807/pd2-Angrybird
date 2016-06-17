@@ -9,6 +9,8 @@ INPUT(
 ./release\other.o
 ./release\bird_blue.o
 ./release\genbird.o
+./release\bird_white.o
+./release\bird_yellow.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_gameitem.o

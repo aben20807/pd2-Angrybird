@@ -6,7 +6,7 @@
 #include <QTimer>
 #include "gameitem.h"
 
-#define BARR_DENSITY 1.5f//密度
+#define BARR_DENSITY 35.0f//密度
 #define BARR_FRICTION 2.0f//摩擦力
 #define BARR_RESTITUTION 0.1f//回復力
 

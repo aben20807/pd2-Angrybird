@@ -7,7 +7,7 @@ Bird::Bird(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGra
     g_pixmap.setTransformOriginPoint(g_pixmap.boundingRect().width()/2,g_pixmap.boundingRect().height()/2);
 
     float radius = (pixmap.height())*(H_WORLD/H_WINDOW)/2;
-    g_size = QSize(radius*2,radius*2);
+    g_size = QSize(radius*2.0f,radius*2.0f);
     //cout<<radius<<endl;
 
     // Create Body

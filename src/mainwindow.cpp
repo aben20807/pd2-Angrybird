@@ -34,15 +34,6 @@ void MainWindow::showEvent(QShowEvent *)
     // Create ground
     itemList.push_back(new Land(9.0,1.3,QPixmap(":/ground.png").scaled(1270,72),world,scene));
 
-//    itemList.push_back(new Land(W_CENTER,H_CENTER,QPixmap(":/dot").scaled(5,5),world,scene));
-//    Enemy *t = new Enemy();
-//    QPixmap face;
-//    face.load(":/dot");
-//    face = face.scaled(3,3);
-//    t->setPixmap(face);
-//    t->setPos(-69,530.5);
-//    scene->addItem(t);
-
     //邊界
     itemList.push_back(new Land(32.0,14.0,QPixmap(":/-.png").scaled(12,1837),world,scene));//右
     itemList.push_back(new Land(-3.3,14.0,QPixmap(":/-.png").scaled(12,1837),world,scene));//左
@@ -54,10 +45,12 @@ void MainWindow::showEvent(QShowEvent *)
     //itemList.push_back(new Barrier(15.0,3,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
     //itemList.push_back(new Barrier(15.0,8,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
 
-    itemList.push_back(new Barrier(15,5,&timer,QPixmap(":/barr_l.png").scaled(20,205),world,scene));
-    //itemList.push_back(new Barrier(17.4,5,&timer,QPixmap(":/barr_l.png").scaled(20,205),world,scene));
-    //itemList.push_back(new Barrier(15.0,3,&timer,QPixmap(":/barr_--.png").scaled(205,20),world,scene));
-    //itemList.push_back(new Barrier(15.0,8,&timer,QPixmap(":/barr_--.png").scaled(205,20),world,scene));
+    itemList.push_back(new Barrier(15,5,&timer,QPixmap(":/barr_l.png").scaled(20,137),world,scene));
+    itemList.push_back(new Barrier(19,5,&timer,QPixmap(":/barr_l.png").scaled(20,137),world,scene));
+    itemList.push_back(new Barrier(23,5,&timer,QPixmap(":/barr_l.png").scaled(20,137),world,scene));
+    itemList.push_back(new Barrier(27,5,&timer,QPixmap(":/barr_l.png").scaled(20,137),world,scene));
+    itemList.push_back(new Barrier(25.0,3,&timer,QPixmap(":/barr_--.png").scaled(137,20),world,scene));
+    itemList.push_back(new Barrier(25.0,8,&timer,QPixmap(":/barr_--.png").scaled(137,20),world,scene));
 
     //彈弓
     slingshot = new Other;
@@ -66,14 +59,9 @@ void MainWindow::showEvent(QShowEvent *)
     slingshot->setPixmap(slingshot_p);
     slingshot->setPos(60,330);
     scene->addItem(slingshot);
-//    line = new QGraphicsLineItem;//(60,320,50,340);
-    // Create bird (You can edit here)
-    //Bird *birdie = new Bird(0.0f,10.0f,&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
 
-    // Setting the Velocity
-    //birdie->setLinearVelocity(b2Vec2(5,5));
-    //itemList.push_back(birdie);
-
+    //敵人
+    pig = new Enemy(25.0,5,&timer,QPixmap(":/pig.png").scaled(78,77),world,scene);
     // Timer
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
     connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));

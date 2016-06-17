@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     enemy.cpp \
     other.cpp \
     bird_blue.cpp \
-    genbird.cpp
+    genbird.cpp \
+    bird_white.cpp \
+    bird_yellow.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -78,7 +80,9 @@ HEADERS  += mainwindow.h \
     enemy.h \
     other.h \
     bird_blue.h \
-    genbird.h
+    genbird.h \
+    bird_white.h \
+    bird_yellow.h
 
 FORMS    += mainwindow.ui
 

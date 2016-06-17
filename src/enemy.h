@@ -1,16 +1,12 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include <QGraphicsPixmapItem>
-#include <QGraphicsSceneMouseEvent>
-#include <iostream>
-#include <QGraphicsScene>
-using namespace std;
+#include "bird.h"
 
-class Enemy : public QGraphicsPixmapItem
+class Enemy : public Bird
 {
 public:
-    Enemy();
+    Enemy(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
 };
 
 #endif // ENEMY_H
