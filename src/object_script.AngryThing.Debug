@@ -7,6 +7,8 @@ INPUT(
 ./debug\barrier.o
 ./debug\enemy.o
 ./debug\other.o
+./debug\bird_blue.o
+./debug\genbird.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_gameitem.o

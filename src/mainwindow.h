@@ -18,6 +18,7 @@
 #include "land.h"
 #include "barrier.h"
 #include "bird.h"
+#include "bird_blue.h"
 #include "other.h"
 #include "enemy.h"
 
@@ -38,6 +39,7 @@ public:
     //void mousePressEvent(QGraphicsSceneMouseEvent *cclick);
     void closeEvent(QCloseEvent *);
     QPointF qtToBox2d(float, float, float w, float h);
+
 signals:
     // Signal for closing the game
     void quitGame();

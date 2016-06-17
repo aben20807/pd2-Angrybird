@@ -7,6 +7,8 @@ INPUT(
 ./release\barrier.o
 ./release\enemy.o
 ./release\other.o
+./release\bird_blue.o
+./release\genbird.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_gameitem.o

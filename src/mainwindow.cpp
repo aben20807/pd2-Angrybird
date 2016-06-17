@@ -49,10 +49,15 @@ void MainWindow::showEvent(QShowEvent *)
     itemList.push_back(new Land(15.7,18.5,QPixmap(":/--.png").scaled(1870,12),world,scene));//上
 
     //障礙物
-    itemList.push_back(new Barrier(12.7,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
-    itemList.push_back(new Barrier(17.4,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
-    itemList.push_back(new Barrier(15.0,3,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
-    itemList.push_back(new Barrier(15.0,8,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
+    //itemList.push_back(new Barrier(12.7,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
+    //itemList.push_back(new Barrier(17.4,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
+    //itemList.push_back(new Barrier(15.0,3,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
+    //itemList.push_back(new Barrier(15.0,8,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
+
+    itemList.push_back(new Barrier(15,5,&timer,QPixmap(":/barr_l.png").scaled(20,205),world,scene));
+    //itemList.push_back(new Barrier(17.4,5,&timer,QPixmap(":/barr_l.png").scaled(20,205),world,scene));
+    //itemList.push_back(new Barrier(15.0,3,&timer,QPixmap(":/barr_--.png").scaled(205,20),world,scene));
+    //itemList.push_back(new Barrier(15.0,8,&timer,QPixmap(":/barr_--.png").scaled(205,20),world,scene));
 
     //彈弓
     slingshot = new Other;
@@ -84,8 +89,9 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         QMouseEvent *click = static_cast<QMouseEvent *>(event);
         ropeStart = qtToBox2d(click->x(),click->y(),23,23);
         cout<<"start:"<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
-        birdie2 = new Bird((ropeStart.x()),ropeStart.y(),&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
+        birdie2 = new Bird_blue((ropeStart.x()),ropeStart.y(),&timer,QPixmap(":/bird.png").scaled(46,46),world,scene);
         //line->setLine(60,320,click->x(),click->y());
+
 
         return true;
     }
@@ -102,6 +108,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
 //        line->setPen(pen);
 //        line->setLine(line1);
 //        line->setVisible(true);
+
         return true;
     }
     if(event->type() == QEvent::MouseButtonRelease)
@@ -143,3 +150,4 @@ void MainWindow::QUITSLOT()
     // For debug
     std::cout << "Quit Game Signal receive !" << std::endl ;
 }
+

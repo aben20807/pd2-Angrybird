@@ -17,7 +17,7 @@ Barrier::Barrier(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world
     bodyDef.userData = this;
     g_body = world->CreateBody(&bodyDef);
     b2PolygonShape bodyBox;
-    bodyBox.SetAsBox(w/2.3f,h/2.1f);
+    bodyBox.SetAsBox(w/2.3f,h/2.0f);
     //g_body->CreateFixture(&bodyBox,9.0f);
     b2FixtureDef fixturedef;
     fixturedef.shape = &bodyBox;

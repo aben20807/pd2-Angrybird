@@ -1,5 +1,6 @@
 #include "bird.h"
 
+Bird::Bird(b2World *world):GameItem(world){}
 Bird::Bird(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
 {
     float radius = (pixmap.height())*(H_WORLD/H_WINDOW)/2;
