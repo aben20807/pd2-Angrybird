@@ -14,6 +14,7 @@ class Barrier : public GameItem
 {
 public:
     Barrier(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
+    void removeBarr(QGraphicsScene *scene);
 };
 
 #endif // BARRIER_H

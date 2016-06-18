@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     bird_blue.cpp \
     genbird.cpp \
     bird_white.cpp \
-    bird_yellow.cpp
+    bird_yellow.cpp \
+    btn.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -82,7 +83,8 @@ HEADERS  += mainwindow.h \
     bird_blue.h \
     genbird.h \
     bird_white.h \
-    bird_yellow.h
+    bird_yellow.h \
+    btn.h
 
 FORMS    += mainwindow.ui
 

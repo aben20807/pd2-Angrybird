@@ -39,3 +39,4 @@ void GameItem::paint()
     g_pixmap.resetTransform();
     g_pixmap.setRotation(-(g_body->GetAngle()*180/3.14159));
 }
+

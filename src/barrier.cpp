@@ -33,3 +33,7 @@ Barrier::Barrier(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world
     scene->addItem(&g_pixmap);
     paint();
 }
+void Barrier::removeBarr(QGraphicsScene *scene)
+{
+    scene->removeItem(&g_pixmap);
+}

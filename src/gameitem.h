@@ -8,6 +8,7 @@
 #include <QtMath>
 #include <iostream>
 #include <QGraphicsSceneMouseEvent>
+#include <QGraphicsScene>
 
 using namespace std;
 #define W_CENTER (31.85/2-2.3)
@@ -27,7 +28,6 @@ public:
 
 public slots:
     void paint();
-    //TODO virtual void collide();
 
 protected:
     b2Body *g_body;

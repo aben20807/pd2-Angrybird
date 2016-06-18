@@ -40,6 +40,7 @@ void Bird::setLinearVelocity(b2Vec2 velocity)
 b2Vec2 Bird::getLinearVelocity()
 {
     return g_body->GetLinearVelocity();
+
 }
 b2Vec2 Bird::getPosition()
 {

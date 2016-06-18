@@ -16,5 +16,16 @@
         <file alias="bird_w.png">image/white.png</file>
         <file alias="bird_y.png">image/yellow.png</file>
         <file alias="egg.png">image/egg.png</file>
+        <file alias="bg_start">image/bg_start.png</file>
+        <file alias="btn_exit">image/exit.png</file>
+        <file alias="btn_restart">image/restart.png</file>
+        <file alias="btn_start">image/start.png</file>
+        <file alias="A">image/award_A.png</file>
+        <file alias="B">image/award_B.png</file>
+        <file alias="C">image/award_C.png</file>
+        <file alias="F">image/award_F.png</file>
+        <file alias="S">image/award_S.png</file>
+        <file alias="bg_score">image/bg_score.png</file>
+        <file alias="bg_quit">image/bg_quit.png</file>
     </qresource>
 </RCC>
