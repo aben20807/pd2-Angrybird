@@ -54,7 +54,6 @@ public:
 
 signals:
     // Signal for closing the game
-//    void birdDisappear();
     void quitGame();
 
 

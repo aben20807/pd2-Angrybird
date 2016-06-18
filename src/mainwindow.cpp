@@ -303,7 +303,6 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             isSetVelocity = true;//速度只可設定一次
             isPreDisappear = false;
             genType++;
-//            emit birdDisappear();
         }
         connect(&stopCheck , SIGNAL(timeout()) , this , SLOT(takeBirdAway()));
         connect(&stopCheck , SIGNAL(timeout()) , this , SLOT(takePigAway()));

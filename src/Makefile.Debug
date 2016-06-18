@@ -203,6 +203,7 @@ debug/qrc_res.cpp: res.qrc \
 		image/boundary_-.png \
 		image/restart.png \
 		image/Normal_Bird_1.png \
+		image/bg_quit.png \
 		image/pig_B.png \
 		image/egg.png \
 		image/award_A.png \
