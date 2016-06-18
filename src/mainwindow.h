@@ -47,14 +47,14 @@ public:
     void showEvent(QShowEvent *);
     bool eventFilter(QObject *,QEvent *event);
     void closeEvent(QCloseEvent *);
-    QPointF qtToBox2d(float, float, float w, float h);
+    QPointF qtToBox2d(float x, float y, float w, float h);
     void gameInit();
     void bgChange(QString mode);
     void removeAllBarr();
 
 signals:
     // Signal for closing the game
-    void birdDisappear();
+//    void birdDisappear();
     void quitGame();
 
 
