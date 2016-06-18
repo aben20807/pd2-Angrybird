@@ -7,7 +7,7 @@ class Bird_white : public Bird
 {
 public:
     Bird_white(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
-    virtual void ability();
+    virtual int ability();
 };
 
 #endif // BIRD_WHITE_H

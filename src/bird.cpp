@@ -41,11 +41,16 @@ b2Vec2 Bird::getLinearVelocity()
 {
     return g_body->GetLinearVelocity();
 }
+b2Vec2 Bird::getPosition()
+{
+    return g_body->GetPosition();
+}
+
 void Bird::removeBird(QGraphicsScene *scene)
 {
     scene->removeItem(&g_pixmap);
 }
-void Bird::ability()
+int Bird::ability()
 {
-
+    return 0;
 }

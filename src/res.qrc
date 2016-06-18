@@ -15,5 +15,6 @@
         <file alias="pig.png">image/pig_B.png</file>
         <file alias="bird_w.png">image/white.png</file>
         <file alias="bird_y.png">image/yellow.png</file>
+        <file alias="egg.png">image/egg.png</file>
     </qresource>
 </RCC>

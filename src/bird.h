@@ -19,8 +19,9 @@ public:
     Bird(float x, float y, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
     void setLinearVelocity(b2Vec2 velocity);
     b2Vec2 getLinearVelocity();
+    b2Vec2 getPosition();
     void removeBird(QGraphicsScene *scene);
-    virtual void ability();
+    virtual int ability();
 
 protected:
 //    QPixmap pixmap;

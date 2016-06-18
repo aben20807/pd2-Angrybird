@@ -26,6 +26,11 @@
 
 #define BIRD_NUM 4
 
+#define BIRD 0
+#define BIRD_BLUE 1
+#define BIRD_WHITE 2
+#define BIRD_YELLOW 3
+
 namespace Ui {
 class MainWindow;
 }
@@ -67,8 +72,11 @@ private:
     Bird *bird_2;
     Bird *bird_3;
     Bird *bird_4;
-    bool useAbility;
+    bool isUseAbility;
+    bool isSetVelocity;
+    bool isPreDisappear;
     int genType;
+    int tmpType;
     QList<Bird *> list;
     Other *slingshot;
     Enemy *pig;

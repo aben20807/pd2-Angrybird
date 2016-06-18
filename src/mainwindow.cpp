@@ -67,7 +67,8 @@ void MainWindow::showEvent(QShowEvent *)
     connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
     timer.start(100/6);
     stopCheck.start(1);
-    useAbility = true;
+    isUseAbility = true;
+    isPreDisappear = true;
     genType = 0;
     //stopCheck = new QTimer(this);
 //    connect(&stopCheck , SIGNAL(timeout()) , this , SLOT(takeBirdAway()));
@@ -77,7 +78,7 @@ void MainWindow::showEvent(QShowEvent *)
 bool MainWindow::eventFilter(QObject *, QEvent *event)
 {
     // Hint: Notice the Number of every event!
-    if(event->type() == QEvent::MouseButtonPress && useAbility == true)
+    if(event->type() == QEvent::MouseButtonPress && isPreDisappear == true)
     {
         stopCheck.stop();
         //cout << "Press !" << endl ;
@@ -86,17 +87,46 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         //cout<<"start:"<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
         genType = (genType) % BIRD_NUM;
         world->SetGravity(b2Vec2(0.0f, 0.0f));//點擊時把重力設成0
-        bird_1 = genBird(2.94,6.43,&timer,genType,world,scene);
+        bird_1 = genBird(2.94f,6.43f,&timer,genType,world,scene);
+        //bird_1 = genBird(2.94f,6.43f,&timer,1,world,scene);//測試單一鳥種用
         //line->setLine(60,320,click->x(),click->y());
         list.push_back(bird_1);
-        useAbility = false;
+        isUseAbility = false;
+        isSetVelocity = false;
         return true;
     }
-    if(event->type() == QEvent::MouseButtonPress && useAbility == false)
+    if(event->type() == QEvent::MouseButtonPress && isUseAbility == false)
     {
-        bird_1->ability();
-
-        //useAbility = true;
+        int callAbility = bird_1->ability();
+        //cout<<bird_1->getPosition().x<<" "<<bird_1->getPosition().y<<endl;
+        switch (callAbility) {
+        case BIRD://紅鳥能力
+            break;
+        case BIRD_BLUE://藍鳥能力
+            bird_2 = new Bird_blue(bird_1->getPosition().x,bird_1->getPosition().y,&timer,QPixmap(":/bird_b.png").scaled(42,41),world,scene);
+            bird_3 = new Bird_blue(bird_1->getPosition().x,bird_1->getPosition().y,&timer,QPixmap(":/bird_b.png").scaled(42,41),world,scene);
+            bird_4 = new Bird_blue(bird_1->getPosition().x,bird_1->getPosition().y,&timer,QPixmap(":/bird_b.png").scaled(42,41),world,scene);
+            bird_2->setLinearVelocity(b2Vec2(bird_1->getLinearVelocity().x,bird_1->getLinearVelocity().y-1.0f));
+            bird_3->setLinearVelocity(b2Vec2(bird_1->getLinearVelocity().x,bird_1->getLinearVelocity().y+1.0f));
+            bird_4->setLinearVelocity(b2Vec2(bird_1->getLinearVelocity().x,bird_1->getLinearVelocity().y+2.0f));
+            list.push_back(bird_2);
+            list.push_back(bird_3);
+            list.push_back(bird_4);
+            break;
+        case BIRD_WHITE://白鳥能力
+            bird_2 = new Bird_white(bird_1->getPosition().x,bird_1->getPosition().y-0.5,&timer,QPixmap(":/egg.png").scaled(47,60),world,scene);
+            bird_2->setLinearVelocity(b2Vec2(0.0f,-2.0f));
+            bird_1->setLinearVelocity(b2Vec2(bird_1->getLinearVelocity().x,bird_1->getLinearVelocity().y+2.0f));
+            list.push_back(bird_2);
+            break;
+        case BIRD_YELLOW://黃鳥能力
+            bird_1->setLinearVelocity(b2Vec2(bird_1->getLinearVelocity().x*4,bird_1->getLinearVelocity().y));
+            break;
+        default:
+            break;
+        }
+        //cout<<"ability()"<<endl;
+        isUseAbility = true;//能力只可使用一次
     }
     if(event->type() == QEvent::MouseMove)
     {
@@ -117,19 +147,24 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     if(event->type() == QEvent::MouseButtonRelease)
     {
         //cout << "Release !" << endl ;
-        world->SetGravity(b2Vec2(0.0f, -9.8f));//釋放時把重力設成-9.8
-        QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
-        ropeEnd = qtToBox2d(mclick->x(),mclick->y(),23,23);
-        //cout<<"end:"<<ropeEnd.x()<<" "<<ropeEnd.y()<<endl;
-        ropeLength = ropeEnd - ropeStart;
-        //cout<<"length:"<<-1*ropeLength.x()<<" "<<ropeLength.y()<<endl;
-        bird_1->setLinearVelocity(b2Vec2(-4*ropeLength.x(),-4*ropeLength.y()));
+        if(isUseAbility == false && isSetVelocity == false)
+        {
+            world->SetGravity(b2Vec2(0.0f, -9.8f));//釋放時把重力設成-9.8
+            QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
+            ropeEnd = qtToBox2d(mclick->x(),mclick->y(),23,23);
+            //cout<<"end:"<<ropeEnd.x()<<" "<<ropeEnd.y()<<endl;
+            ropeLength = ropeEnd - ropeStart;
+            //cout<<"length:"<<-1*ropeLength.x()<<" "<<ropeLength.y()<<endl;
+            bird_1->setLinearVelocity(b2Vec2(-4*ropeLength.x(),-4*ropeLength.y()));
 
-        itemList.push_back(bird_1);
-
+            itemList.push_back(bird_1);
+            isSetVelocity = true;//速度只可設定一次
+            isPreDisappear = false;
+            genType++;
+        }
         connect(&stopCheck , SIGNAL(timeout()) , this , SLOT(takeBirdAway()));
         stopCheck.start();
-        //cout<<bird_1->getLinearVelocity().x<<" "<<bird_1->getLinearVelocity().y<<endl;
+        cout<<bird_1->getLinearVelocity().x<<" "<<bird_1->getLinearVelocity().y<<endl;
         return true;
     }
     return false;
@@ -168,8 +203,8 @@ void MainWindow::takeBirdAway()
             i->removeBird(scene);
             list.removeOne(i);
             delete i;
-            useAbility = true;
-            genType++;
+            isUseAbility = true;
+            isPreDisappear = true;
         }
     }
 }
