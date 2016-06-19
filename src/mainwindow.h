@@ -53,9 +53,11 @@ public:
     void gameInit();
     void bgChange(QString mode);
     void removeAllBarr();
+    static int const EXIT_CODE_REBOOT;
 
 signals:
     // Signal for closing the game
+    void restartSignal();
     void quitGame();
 
 
@@ -65,6 +67,7 @@ private slots:
     void QUITSLOT();
     void takeBirdAway();
     void takePigAway();
+    void restart();
 
 private:
     Ui::MainWindow *ui;

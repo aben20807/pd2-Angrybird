@@ -36,6 +36,7 @@ void MainWindow::gameInit()
     isOver = false;
     genType = 0;
     isWin = false;
+    connect(this,SIGNAL(restartSignal()),this,SLOT(restart()));
 }
 
 void MainWindow::bgChange(QString mode)
@@ -159,20 +160,20 @@ void MainWindow::bgChange(QString mode)
             }
         }
         award->setPixmap(a_p);
-        award->setPos(360,140);
+        award->setPos(360,120);
         scene->addItem(award);
-//        btn_restart = new Btn();
-//        QPixmap restart;
-//        restart.load(":/btn_restart");
-//        btn_restart->setPixmap(restart);
-//        btn_restart->setPos(300,310);
-//        scene->addItem(btn_restart);
+        btn_restart = new Btn();
+        QPixmap restart;
+        restart.load(":/btn_restart");
+        btn_restart->setPixmap(restart);
+        btn_restart->setPos(300,310);
+        scene->addItem(btn_restart);
         btn_exit = new Btn();
         QPixmap exit;
         exit.load(":/btn_exit");
         btn_exit->setPixmap(exit);
-//        btn_exit->setPos(480,310);
-        btn_exit->setPos(390,310);
+        btn_exit->setPos(480,310);
+//        btn_exit->setPos(390,310);
         scene->addItem(btn_exit);
     }
 }
@@ -199,15 +200,12 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     if(event->type() == QEvent::MouseButtonPress && screenMode == "over")
     {
         //QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
-//        if((mclick->x()-69 >= btn_restart->pos().x() && mclick->x()-69 <= btn_restart->pos().x()+btn_w) && (mclick->y() >= btn_restart->pos().y() && mclick->y() <= btn_restart->pos().y()+btn_h))
-//        {
-//            click->play();
-//            gameInit();
-//            bgChange("restart");
-//            screenMode = "restart";
-
-//            return true;
-//        }
+        if((mclick->x()-69 >= btn_restart->pos().x() && mclick->x()-69 <= btn_restart->pos().x()+btn_w) && (mclick->y() >= btn_restart->pos().y() && mclick->y() <= btn_restart->pos().y()+btn_h))
+        {
+            click->play();
+            emit restartSignal();
+            return true;
+        }
         if((mclick->x()-69 >= btn_exit->pos().x() && mclick->x()-69 <= btn_exit->pos().x()+btn_w) && (mclick->y() >= btn_exit->pos().y() && mclick->y() <= btn_exit->pos().y()+btn_h) && isOver == true)
         {
             isOver = false;
@@ -216,13 +214,13 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             bg.load(":/bg_quit");
             scene->setBackgroundBrush(bg);
             scene->removeItem(award);
-//            scene->removeItem(btn_restart);
+            scene->removeItem(btn_restart);
             scene->removeItem(btn_exit);
             delete award;
-//            delete btn_restart;
+            delete btn_restart;
             delete btn_exit;
             emit quitGame();
-            //this->close();
+            this->close();
             return true;
         }
         return true;
@@ -396,4 +394,7 @@ void MainWindow::removeAllBarr()
         delete i;
     }
 }
-
+void MainWindow::restart()
+{
+    qApp->exit(MainWindow::EXIT_CODE_REBOOT);
+}

@@ -27,9 +27,9 @@ How to play is in the 初始畫面
 ![image](https://github.com/aben20807/pd2-Angrybird/raw/master/report/screen shot/2016-06-19_000734.jpg)  
   
 3.得分畫面:  
-![image](https://github.com/aben20807/pd2-Angrybird/raw/master/report/screen shot/2016-06-19_000843.jpg)  
+![image](https://github.com/aben20807/pd2-Angrybird/raw/master/report/screen shot/2016-06-19_215153.jpg)  
  
-![image](https://github.com/aben20807/pd2-Angrybird/raw/master/report/screen shot/2016-06-19_000745.jpg)  
+![image](https://github.com/aben20807/pd2-Angrybird/raw/master/report/screen shot/2016-06-19_215153.jpg)  
   
 ![image](https://github.com/aben20807/pd2-Angrybird/raw/master/report/screen shot/2016-06-19_000751.jpg)  
   
