@@ -3429,7 +3429,7 @@
         <dia:point val="13.17,11.8326"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="13.16,11.8226;20.57,29.1426"/>
+        <dia:rectangle val="13.16,11.8226;20.57,29.4426"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="13.17,11.8326"/>
@@ -3438,7 +3438,7 @@
         <dia:real val="7.3900000000000006"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="17.300000000000004"/>
+        <dia:real val="17.600000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#MainWindow#</dia:string>
@@ -3528,6 +3528,29 @@
         <dia:real val="0.29999999999999999"/>
       </dia:attribute>
       <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name">
+            <dia:string>#EXIT_CODE_REBOOT#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="type">
+            <dia:string>#static int const#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="value">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="comment">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="visibility">
+            <dia:enum val="0"/>
+          </dia:attribute>
+          <dia:attribute name="abstract">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+          <dia:attribute name="class_scope">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+        </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
             <dia:string>#ui#</dia:string>
