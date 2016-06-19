@@ -27,5 +27,8 @@
         <file alias="S">image/award_S.png</file>
         <file alias="bg_score">image/bg_score.png</file>
         <file alias="bg_quit">image/bg_quit.png</file>
+        <file alias="click.wav">sound/click.wav</file>
+        <file alias="pull.wav">sound/slingshot_pull.wav</file>
+        <file alias="shoot.wav">sound/slingshot_shoot.wav</file>
     </qresource>
 </RCC>

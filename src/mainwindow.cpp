@@ -22,40 +22,9 @@ void MainWindow::showEvent(QShowEvent *)
     ui->graphicsView->setScene(scene);
     scene->setSceneRect(10,4,800,530);
     // Create world
-    world = new b2World(b2Vec2(0.0f, -9.8f));
-    // Setting Size
-    GameItem::setGlobalSize(QSizeF(32,18),size());
-    timer.start(100/6);
-    stopCheck.start(1);
-
-    // Create ground
-    itemList.push_back(new Land(9.0,1.3,QPixmap(":/ground.png").scaled(1270,72),world,scene));
-
-    //邊界
-    itemList.push_back(new Land(32.0,14.0,QPixmap(":/-.png").scaled(12,1837),world,scene));//右
-    itemList.push_back(new Land(-3.3,14.0,QPixmap(":/-.png").scaled(12,1837),world,scene));//左
-    itemList.push_back(new Land(15.7,18.5,QPixmap(":/--.png").scaled(1870,12),world,scene));//上
-
-    //障礙物
-    //itemList.push_back(new Barrier(12.7,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
-    //itemList.push_back(new Barrier(17.4,5,&timer,QPixmap(":/barr_tree.png").scaled(39,156),world,scene));
-    //itemList.push_back(new Barrier(15.0,3,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
-    //itemList.push_back(new Barrier(15.0,8,&timer,QPixmap(":/barr_base.png").scaled(194,39),world,scene));
-
-    //彈弓
-    slingshot = new Other;
-    QPixmap slingshot_p;
-    slingshot_p.load(":/slingshot.png");
-    slingshot->setPixmap(slingshot_p);
-    slingshot->setPos(60,330);
-    scene->addItem(slingshot);
 
     bgChange("start");
     screenMode = "start";
-
-    isUseAbility = true;
-    isPreDisappear = true;
-    genType = 0;
 }
 void MainWindow::gameInit()
 {
@@ -84,6 +53,46 @@ void MainWindow::bgChange(QString mode)
         btn_start->setPixmap(start);
         btn_start->setPos(390,310);
         scene->addItem(btn_start);
+        click = new QSound(":/click.wav");
+        pull = new QSound(":/pull.wav");
+        shoot = new QSound(":/shoot.wav");
+
+        world = new b2World(b2Vec2(0.0f, -9.8f));
+        // Setting Size
+        GameItem::setGlobalSize(QSizeF(32,18),size());
+        timer.start(100/6);
+        stopCheck.start(1);
+
+        // Create ground
+        itemList.push_back(new Land(9.0,1.3,QPixmap(":/ground.png").scaled(1270,72),world,scene));
+
+        //邊界
+        itemList.push_back(new Land(32.0,14.0,QPixmap(":/-.png").scaled(12,1837),world,scene));//右
+        itemList.push_back(new Land(-3.3,14.0,QPixmap(":/-.png").scaled(12,1837),world,scene));//左
+        itemList.push_back(new Land(15.7,18.5,QPixmap(":/--.png").scaled(1870,12),world,scene));//上
+
+        //彈弓
+        slingshot = new Other;
+        QPixmap slingshot_p;
+        slingshot_p.load(":/slingshot.png");
+        slingshot->setPixmap(slingshot_p);
+        slingshot->setPos(60,330);
+        scene->addItem(slingshot);
+
+        isUseAbility = true;
+        isPreDisappear = true;
+        genType = 0;
+
+    }
+    else if(mode =="restart")
+    {
+        //delete scene;
+        //delete world;
+        scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
+        ui->graphicsView->setScene(scene);
+        scene->setSceneRect(10,4,800,530);
+        bgChange("start");
+        screenMode = "start";
     }
     else if(mode == "play")
     {
@@ -114,7 +123,7 @@ void MainWindow::bgChange(QString mode)
         timer.stop();
         stopCheck.stop();
         removeAllBarr();
-//        foreach (Enemy *i, pigList) {
+//        foreach (Enemy *i, pigList) {//豬可以留著當嘲諷
 //            i->removePig(scene);
 //            pigList.removeOne(i);
 //            delete i;
@@ -170,14 +179,16 @@ void MainWindow::bgChange(QString mode)
 
 bool MainWindow::eventFilter(QObject *, QEvent *event)
 {
+    mclick = static_cast<QMouseEvent *>(event);
     if(event->type() == QEvent::MouseButtonPress && screenMode == "start" && isPreDisappear == true )
     {
-        QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
+        //mclick = static_cast<QMouseEvent *>(event);
 //        cout<<mclick->x()<<" "<<mclick->y()<<endl;
 //        cout<<btn_start->pos().x()<<" "<<btn_start->pos().y()<<endl;
 //        cout<<btn_start->pos().x()+btn_w<<" "<<btn_start->pos().y()+btn_h<<endl;
         if((mclick->x()-69 >= btn_start->pos().x() && mclick->x()-69 <= btn_start->pos().x()+btn_w) && (mclick->y() >= btn_start->pos().y() && mclick->y() <= btn_start->pos().y()+btn_h))
         {
+            click->play();
             gameInit();
             bgChange("play");
             screenMode = "play";
@@ -187,21 +198,20 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     }
     if(event->type() == QEvent::MouseButtonPress && screenMode == "over")
     {
-        QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
+        //QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
 //        if((mclick->x()-69 >= btn_restart->pos().x() && mclick->x()-69 <= btn_restart->pos().x()+btn_w) && (mclick->y() >= btn_restart->pos().y() && mclick->y() <= btn_restart->pos().y()+btn_h))
 //        {
-//            scene->removeItem(award);
-//            scene->removeItem(btn_restart);
-//            scene->removeItem(btn_exit);
-//            delete award;
-//            delete btn_restart;
-//            delete btn_exit;
-//            bgChange("start");
-//            screenMode = "start";
+//            click->play();
+//            gameInit();
+//            bgChange("restart");
+//            screenMode = "restart";
+
 //            return true;
 //        }
-        if((mclick->x()-69 >= btn_exit->pos().x() && mclick->x()-69 <= btn_exit->pos().x()+btn_w) && (mclick->y() >= btn_exit->pos().y() && mclick->y() <= btn_exit->pos().y()+btn_h))
+        if((mclick->x()-69 >= btn_exit->pos().x() && mclick->x()-69 <= btn_exit->pos().x()+btn_w) && (mclick->y() >= btn_exit->pos().y() && mclick->y() <= btn_exit->pos().y()+btn_h) && isOver == true)
         {
+            isOver = false;
+            click->play();
             QImage bg;
             bg.load(":/bg_quit");
             scene->setBackgroundBrush(bg);
@@ -212,6 +222,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
 //            delete btn_restart;
             delete btn_exit;
             emit quitGame();
+            //this->close();
             return true;
         }
         return true;
@@ -220,7 +231,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     {
         stopCheck.stop();
         //cout << "Press !" << endl ;
-        QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
+        //QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
         ropeStart = qtToBox2d(mclick->x(),mclick->y(),23,23);
         //cout<<"start:"<<ropeStart.x()<<" "<<ropeStart.y()<<endl;
         //genType = (genType) % BIRD_NUM;//循環
@@ -230,6 +241,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         }
         if(genType > 3 || isOver == true)
         {
+            isOver = true;
             finalScore = genType;
             timer.stop();
             stopCheck.stop();
@@ -240,6 +252,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         world->SetGravity(b2Vec2(0.0f, 0.0f));//點擊時把重力設成0
         if(isOver == false)
         {
+            pull->play();
             bird_1 = genBird(2.94f,6.43f,&timer,genType,world,scene);
             //bird_1 = genBird(2.94f,6.43f,&timer,1,world,scene);//測試單一鳥種用
             //line->setLine(60,320,click->x(),click->y());
@@ -251,6 +264,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     }
     if(event->type() == QEvent::MouseButtonPress && isUseAbility == false && screenMode == "play")
     {
+        click->play();
         stopCheck.stop();
         int callAbility = bird_1->ability();
         //cout<<bird_1->getPosition().x<<" "<<bird_1->getPosition().y<<endl;
@@ -293,13 +307,15 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         if(isUseAbility == false && isSetVelocity == false && genType <= 3)
         {
             world->SetGravity(b2Vec2(0.0f, -9.8f));//釋放時把重力設成-9.8
-            QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
+            //QMouseEvent *mclick = static_cast<QMouseEvent *>(event);
             ropeEnd = qtToBox2d(mclick->x(),mclick->y(),23,23);
             //cout<<"end:"<<ropeEnd.x()<<" "<<ropeEnd.y()<<endl;
             ropeLength = ropeEnd - ropeStart;
             //cout<<"length:"<<-1*ropeLength.x()<<" "<<ropeLength.y()<<endl;
             bird_1->setLinearVelocity(b2Vec2(-4*ropeLength.x(),-4*ropeLength.y()));
             itemList.push_back(bird_1);
+            pull->stop();
+            shoot->play();
             isSetVelocity = true;//速度只可設定一次
             isPreDisappear = false;
             genType++;

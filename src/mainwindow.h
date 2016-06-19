@@ -15,6 +15,8 @@
 #include <iostream>
 #include <QGraphicsLineItem>
 #include <QApplication>//for using quit()
+#include <Qsound>
+#include <QGraphicsSceneMouseEvent>
 
 #include "gameitem.h"
 #include "land.h"
@@ -99,6 +101,10 @@ private:
     int btn_w;
     int btn_h;
     int finalScore;
+    QSound *click;
+    QSound *pull;
+    QSound *shoot;
+    QMouseEvent *mclick;
 };
 
 #endif // MAINWINDOW_H
